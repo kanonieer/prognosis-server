@@ -27,4 +27,16 @@ router.post('/', (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+    const counterId = req.params.id;
+
+    if(counterId === null || counterId === undefined) {
+        res.status(422).send('Missing counterId parameter.');
+    }
+
+    counterController.deleteCounter(counterId).then(counter => {
+        res.status(204).send();
+    });
+});
+
 export default router;

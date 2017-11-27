@@ -8,7 +8,12 @@ const getAllCounters = () => {
     return db.sequelize.models.counter.findAll();
 }
 
+const deleteCounter = (id) => {
+    return db.sequelize.models.counter.destroy({ where: { 'id': id }});
+}
+
 export {
     createCounter,
-    getAllCounters
+    getAllCounters,
+    deleteCounter
 }
