@@ -1,20 +1,20 @@
 import express from 'express';
-import * as costController from '../controllers/costController';
+import * as consumptionController from '../controllers/consumptionController';
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    costController.getAllCosts().then(costs => {
-        if(costs === null) {
+    consumptionController.getAllConsumptions().then(consumptions => {
+        if(consumptions === null) {
             res.status(404);
           }
 
-        res.send(costs);
+        res.send(consumptions);
     });
 });
 
 router.post('/', (req, res) => {
-    const consumption = req.body.consumption;
+    const value = req.body.value;
     const counterId = req.body.counterId;
     const groupCostPerMonthId = req.body.groupCostPerMonthId;
 
@@ -22,8 +22,8 @@ router.post('/', (req, res) => {
         res.status(415).send('Missing body.');
     }
 
-    if(consumption === null || consumption === undefined) {
-        res.status(422).send('Missing consumption parameter.');
+    if(value === null || value === undefined) {
+        res.status(422).send('Missing value parameter.');
     }
 
     if(counterId === null || counterId === undefined) {
@@ -34,12 +34,12 @@ router.post('/', (req, res) => {
         res.status(422).send('Missing groupCostPerMonthId parameter.');
     }
 
-    costController.createCost({
-        consumption,
+    consumptionController.createConsumption({
+        value,
         counterId,
         groupCostPerMonthId
-    }).then(cost => {
-        res.send(cost);
+    }).then(consumption => {
+        res.send(consumption);
     });
 });
 

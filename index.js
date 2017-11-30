@@ -6,8 +6,9 @@ import db from './api/models/database';
 import counterRouting from './api/routes/counterRouting';
 import tariffGroupRouting from './api/routes/tariffGroupRouting';
 import groupCostPerMonthRouting from './api/routes/groupCostPerMonthRouting';
-import costRouting from './api/routes/costRouting';
+import consumptionRouting from './api/routes/consumptionRouting';
 import monthRouting from './api/routes/monthRouting';
+import consumptionCostRouting from './api/routes/consumptionCostRouting';
 
 const app = express();
 
@@ -24,8 +25,9 @@ app.use(bodyParser.json());
 app.use('/counters', counterRouting);
 app.use('/tariffGroups', tariffGroupRouting);
 app.use('/groupCostPerMonths', groupCostPerMonthRouting);
-app.use('/costs', costRouting);
+app.use('/consumptions', consumptionRouting);
 app.use('/months', monthRouting);
+app.use('/consumptionCosts', consumptionCostRouting);
 
 db.sequelize.sync().then(() => {
     db.sequelize

@@ -9,7 +9,7 @@ const Counter = (sequelize, DataTypes) => {
     });
 
     CounterModel.associate = (models) => {
-        CounterModel.hasMany(models.cost);
+        CounterModel.hasMany(models.consumption);
     };
 
     return CounterModel;

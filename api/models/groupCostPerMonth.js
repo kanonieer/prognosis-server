@@ -10,7 +10,7 @@ const GroupCostPerMonth = (sequelize, DataTypes) => {
     });
 
     GroupCostPerMonthModel.associate = (models) => {
-        GroupCostPerMonthModel.hasMany(models.cost);
+        GroupCostPerMonthModel.hasMany(models.consumption);
     };
 
     return GroupCostPerMonthModel;
